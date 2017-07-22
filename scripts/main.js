@@ -2964,6 +2964,18 @@ var pop_range = d3.extent(population)
 
 var circle_size = d3.scaleLog().domain([pop_range[0],pop_range[1]]).range([2,10]);
 
+var window_width = $(window).width();
+var window_ht = $(window).height();
+
+$("#Page1").css({width: window_width , height : window_ht });
+$("#Page2").css({width: window_width , height : window_ht });
+
+$("#scroller").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#Page2").offset().top},
+        'slow');
+});
+
 var margin = {top: 20, right: 20, bottom: 50, left: 70};
 var width =  0.6 * $(window).width() - margin.left - margin.right;
 var height = $(window).height() - margin.top - margin.bottom;
@@ -3102,14 +3114,10 @@ on('mouseout',function(d,i){
           d3.select(this).transition(t).style("opacity","1");
         }
       }
-      d3.selectAl("circle").style("fill","none");
+      // d3.selectAl("circle").style("fill","none");
   });
 
-})
-
-// d3.select("body").transition(t).style("background-color","red");
-
-
+});
   sp.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x_new.nice()));
