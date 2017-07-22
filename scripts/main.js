@@ -3082,20 +3082,21 @@ d3.selectAll("#scatterplot g g rect").on('mouseover',function(d,i){
   var sel = d3.selectAll("circle").each(function(d1){
       if(d1["Continent"] != selcont){
         if(d3.active(this) == null){
-          d3.select(this).transition(t).style("opacity","0.2")
+          d3.select(this).transition(t).style("opacity","0.2").style("fill","none");
         }
         else{
           d3.select(this).interrupt();
-          d3.select(this).transition(t).style("opacity","0.2");
+          d3.select(this).transition(t).style("opacity","0.2").style("fill","none");
         }
       }
       else{
         if(d3.active(this) == null){
-          d3.select(this).transition(t).style("opacity","1");
+          d3.select(this).transition(t).style("opacity","1").style("fill",function(d,i){return sequentialScale(ContMaster[d["Continent"]])});
+          // d3.select(this).style("fill",function(d,i){ console.log(); });
         }
         else{
           d3.select(this).interrupt();
-          d3.select(this).transition(t).style("opacity","1");
+          d3.select(this).transition(t).style("opacity","1").style("fill",function(d,i){return sequentialScale(ContMaster[d["Continent"]])});
         }
         //  d3.select(this).style("opacity","1");
       }
@@ -3108,13 +3109,15 @@ on('mouseout',function(d,i){
       if(d1["Continent"] != selcont){
         if(d3.active(this) == null){
           d3.select(this).transition(t).style("opacity","1");
+          d3.selectAll("circle").style("fill","none");
         }
         else{
           d3.select(this).interrupt();
           d3.select(this).transition(t).style("opacity","1");
+          d3.selectAll("circle").style("fill","none");
         }
       }
-      // d3.selectAl("circle").style("fill","none");
+
   });
 
 });
