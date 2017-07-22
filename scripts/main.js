@@ -2970,9 +2970,12 @@ var window_ht = $(window).height();
 $("#Page1").css({width: window_width , height : window_ht });
 $("#Page2").css({width: window_width , height : window_ht });
 
-$("#scroller").click(function() {
+$(".scroller").click(function(e) {
+    e.preventDefault();
+    var id = $(this).attr('href');
+    console.log(id);
     $('html,body').animate({
-        scrollTop: $("#Page2").offset().top},
+        scrollTop: $(id).offset().top},
         'slow');
 });
 
