@@ -2934,6 +2934,10 @@ var Country_continent_code = [
   }
 ];
 
+d3.json('/data/test.json',function(d){
+  console.log(d);
+})
+
 // Add an index value into the above Array
 for(var i = 0 ; i < CountryData.length ; i++){
     CountryData[i].index_val = i;
