@@ -41,6 +41,11 @@
     font-size:3em;
 }
 
+.pos_fixed a{
+  text-decoration: none !important;
+  padding-bottom: 5%;
+}
+
 .pos_fixed a:hover{
   color: red;
 }
