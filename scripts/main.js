@@ -2,6 +2,8 @@ var CountryData = new Array();
 
 var Country_continent_code = new Array();
 
+var selectedCountries = new Array();
+
 d3.json('data/countrydata.json',function(e,d2){
 
   console.log(e);
@@ -50,6 +52,7 @@ function proc_data(){
 
   $("#Page1").css({width: window_width , height : window_ht });
   $("#Page2").css({width: window_width , height : window_ht });
+  $("#Page3").css({width: window_width , height : window_ht });
 
   $(".scroller").click(function(e) {
       e.preventDefault();
@@ -104,11 +107,11 @@ function proc_data(){
           var stroke_val = d3.select(this).style("stroke");
           d3.select(this).style("fill",stroke_val);
 
-          // var x = d3.mouse(this)[0] + 80;
-          // var y =  d3.mouse(this)[1];
-          var x = d3.event.pageX;
-          var y = d3.event.pageY;
-
+          var x = d3.mouse(this)[0] + 120;
+          var y =  d3.mouse(this)[1];
+          // var x = d3.event.pageX;
+          // var y = d3.event.pageY;
+          console.log(x + "," + y);
           //console.log("In");
           tooltip.style('opacity',0.7)
                  .style('left', x + 'px')
@@ -124,14 +127,21 @@ function proc_data(){
                     return str;
 
                  });
-          console.log(d3.mouse(this));
+          // console.log(d3.mouse(this));
     })
     .on("mouseout",function(d,i){
       tooltip.style('opacity',0)
       d3.select(this).style("fill","none");
       console.log(d3.mouse(this));
       //console.log("Out");
-    });
+    })
+    .on("click",function(d,i){
+      if(selectedCountries.indexOf(d['Country Name']) == -1){
+        selectedCountries.push(d['Country Name']);
+        generatelistonScreen();
+      }
+    })
+    ;
 
   // For the legend
   var legend = d3.select("#scatterplot")
@@ -235,6 +245,25 @@ function proc_data(){
       .text("% of Rural Population in 204");
 
 };
+
+function generatelistonScreen(){
+  console.log(selectedCountries);
+  $("#selected_countries").html("");
+  var html_ele = "";
+  for(var i = 0 ; i < selectedCountries.length ; i++){
+      html_ele = html_ele + "<button class='btn btn-info remove_click' style='margin-right:2px' country_name='" +selectedCountries[i] + "'>" + selectedCountries[i] + '&nbsp; <span class="glyphicon glyphicon-remove" style="color:red"></span></button>';
+  }
+  $("#selected_countries").html(html_ele);
+
+}
+
+$('#selected_countries').on('click','.remove_click',function(){
+  var sel = $(this).attr('country_name');
+  var ind = selectedCountries.indexOf(sel);
+
+  selectedCountries.splice(ind,1);
+  generatelistonScreen();
+});
 
 
 $("#clickme").click(function () {
