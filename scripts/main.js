@@ -327,6 +327,8 @@ function show_SocioEcoData(){
       scrollTop: $("#Page3").offset().top},
       'slow');
 
+  $(".fixed_horizontal").css('display','initial');
+
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
   var height = $(window).height() - margin.top - margin.bottom;
@@ -366,6 +368,13 @@ function show_SocioEcoData(){
             .datum(temp_array)
             .attr("class","line")
             .attr("d",valueLine);
+
+  line_graph.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+  line_graph.append("g")
+            .call(d3.axisLeft(y));
 
   // console.log(temp_array);
 
