@@ -3,6 +3,7 @@ var CountryData = new Array();
 var Country_continent_code = new Array();
 
 var selectedCountries = new Array();
+var selectedCountries_ESData = new Array();
 
 d3.json('data/countrydata.json',function(e,d2){
 
@@ -52,12 +53,15 @@ function proc_data(){
 
   $("#Page1").css({width: window_width , height : window_ht });
   $("#Page2").css({width: window_width , height : window_ht });
-  $("#Page3").css({width: window_width , height : window_ht });
+  $("#Page3").css({width: 2 * window_width , height : window_ht });
+  $("#Page3Part1").css({width: window_width , height : window_ht });
+  $("#Page3Part2").css({width: window_width , height : window_ht });
+
 
   $(".scroller").click(function(e) {
       e.preventDefault();
       var id = $(this).attr('href');
-      console.log(id);
+      // console.log(id);
       $('html,body').animate({
           scrollTop: $(id).offset().top},
           'slow');
@@ -274,6 +278,31 @@ $('#selected_countries').on('click','.remove_click',function(){
   generatelistonScreen();
 });
 
+$('#ESIndicators').click(function () {
+
+  console.log('Fetching Data');
+  d3.json('data/document.json',function(e,dES){
+
+    for(var i = 0; i < selectedCountries.length ; i++){
+      var o = new Object();
+      o = dES[selectedCountries[i]];
+      selectedCountries_ESData[selectedCountries[i]] = o;
+    }
+
+    console.log(selectedCountries_ESData);
+    show_SocioEcoData();
+
+
+  });
+
+
+});
+
+function show_SocioEcoData(){
+  $('html,body').animate({
+      scrollTop: $("#Page3").offset().top},
+      'slow');
+}
 
 $("#clickme").click(function () {
 

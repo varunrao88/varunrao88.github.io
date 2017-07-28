@@ -42,6 +42,15 @@
     z-index : 20000;
 }
 
+.fixed_horizontal{
+    position: fixed;
+    top: 95%;
+    left: 40%;
+    width: 200px;
+    font-size:3em;
+    z-index : 20000;
+}
+
 .pos_fixed a{
   text-decoration: none !important;
   padding-bottom: 5%;
@@ -49,4 +58,13 @@
 
 .pos_fixed a:hover{
   color: red;
+}
+
+.horizontal_scroll{
+  margin:0px;
+   bottom:0px;
+   /*width:4000px;*/
+   float:left;
+   /*height:100%;*/
+   text-shadow:1px 1px 2px #f0f0f0;
 }
