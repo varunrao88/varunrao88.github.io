@@ -67,6 +67,16 @@ function proc_data(){
           'slow');
   });
 
+  $(".h_scroller").click(function(e){
+    e.preventDefault();
+    var id = $(this).attr('href');
+    // console.log(id);
+    $('html,body').animate({
+        scrollLeft: $(id).offset().left},
+        1000);
+    e.preventDefault();
+  })
+
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
   var height = $(window).height() - margin.top - margin.bottom;
