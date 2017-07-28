@@ -64,6 +64,15 @@ function proc_data(){
       e.preventDefault();
       var id = $(this).attr('href');
       // console.log(id);
+
+      if(id.indexOf("Page3") > -1){
+        $(".fixed_horizontal").css('display','initial');
+      }
+      else{
+        $(".fixed_horizontal").css('display','none');
+      }
+
+
       $('html,body').animate({
           scrollTop: $(id).offset().top},
           'slow');
@@ -300,8 +309,11 @@ $('#ESIndicators').click(function () {
       o = dES[selectedCountries[i]];
       selectedCountries_ESData[selectedCountries[i]] = o;
     }
+    selectedCountries_ESData['High Income'] = dES['High income'];
+    selectedCountries_ESData['Low Income'] = dES['Low income'];
+    selectedCountries_ESData['Middle Income'] = dES['Middle income'];
 
-    console.log(selectedCountries_ESData);
+    // console.log(selectedCountries_ESData);
     show_SocioEcoData();
 
 
@@ -314,6 +326,49 @@ function show_SocioEcoData(){
   $('html,body').animate({
       scrollTop: $("#Page3").offset().top},
       'slow');
+
+  var margin = {top: 20, right: 20, bottom: 50, left: 70};
+  var width =  0.6 * $(window).width() - margin.left - margin.right;
+  var height = $(window).height() - margin.top - margin.bottom;
+
+  var line_graph = d3.select("#Soc_LE_Line")
+    .attr("width",(width + margin.left + margin.right))
+    .attr("height",(height + margin.top + margin.bottom))
+    .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  var o = selectedCountries_ESData['Middle Income'].SOC_LE;
+
+  var timeParser = d3.timeParse("%d-%m-%Y");
+
+  var temp_array = new Array();
+  $.each(o, function(k,v){
+    var new_o = new Object();
+
+    var temp_date = '01-01-' + k;
+    // console.log(temp_date);
+
+    new_o.date = timeParser(temp_date);
+    new_o.val = +v;
+    temp_array.push(new_o);
+  });
+
+  console.log(temp_array);
+  var extent_year = d3.extent(temp_array,function(d){ return d.date });
+  console.log(extent_year);
+  var x = d3.scaleTime().range([0,width]).domain(extent_year);
+  var y = d3.scaleLinear().range([height,0]).domain([0,100]);
+
+  var valueLine = d3.line().x(function(d){  return x(d.date) })
+                           .y(function(d){  return y(d.val)  });
+
+  line_graph.append("path")
+            .datum(temp_array)
+            .attr("class","line")
+            .attr("d",valueLine);
+
+  // console.log(temp_array);
+
 }
 
 $("#clickme").click(function () {
