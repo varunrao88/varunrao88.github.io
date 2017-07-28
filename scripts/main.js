@@ -253,6 +253,15 @@ function generatelistonScreen(){
   for(var i = 0 ; i < selectedCountries.length ; i++){
       html_ele = html_ele + "<button class='btn btn-info remove_click' style='margin-right:2px' country_name='" +selectedCountries[i] + "'>" + selectedCountries[i] + '&nbsp; <span class="glyphicon glyphicon-remove" style="color:red"></span></button>';
   }
+
+  if(selectedCountries.length > 0){
+    $("#ESIndicators").prop('disabled',false);
+  }
+  else{
+    $("#ESIndicators").prop('disabled',true);
+  }
+
+
   $("#selected_countries").html(html_ele);
 
 }
