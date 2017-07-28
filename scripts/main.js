@@ -53,9 +53,11 @@ function proc_data(){
 
   $("#Page1").css({width: window_width , height : window_ht });
   $("#Page2").css({width: window_width , height : window_ht });
-  $("#Page3").css({width: 2 * window_width , height : window_ht });
+  $("#Page3").css({width: 4 * window_width , height : window_ht });
   $("#Page3Part1").css({width: window_width , height : window_ht });
   $("#Page3Part2").css({width: window_width , height : window_ht });
+  $("#Page3Part3").css({width: window_width , height : window_ht });
+  $("#Page3Part4").css({width: window_width , height : window_ht });
 
 
   $(".scroller").click(function(e) {
