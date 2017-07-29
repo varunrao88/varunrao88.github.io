@@ -431,6 +431,9 @@ function show_SocioEcoData_LE(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
+  var legend = d3.select("#Soc_LE_Line").append("g").attr("id","legend_le").attr("width",100).attr("height",100).attr("transform","translate(100,30)");
+  legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
+
   var timeParser = d3.timeParse("%d-%m-%Y");
   var complete_list_country = new Array();
   var date_extent_array = new Array();
