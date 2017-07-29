@@ -29,8 +29,8 @@
 <!-- <svg class="chart"></svg> -->
 
 <div class="pos_fixed">
-<p><a href="#Page1" class="scroller" id="Page1Marker">.</a><br/><a href="#Page2" class="scroller" id="Page2Marker" style="padding-top:-10px">.</a>
-<a href="#Page3" class="scroller" id="Page3Marker" style="padding-top:-10px">.</a>
+<p><a href="#Page1" class="scroller" id="Page1Marker"><span class="glyphicon glyphicon-asterisk" style="color:red" title="Introduction" id="Mark1"></span></a><br/><a href="#Page2" class="scroller" id="Page2Marker" ><span class="glyphicon glyphicon-asterisk" style="color:black" id="Mark2" title="Overview"></span></a>
+<!-- <a href="#Page3" class="scroller" id="Page3Marker" style="padding-top:-10px">.</a> -->
 </p>
 </div>
 
@@ -39,6 +39,32 @@
     <h1 style="padding-left : 2%">Are Developing Countries really Developing ?</h1>
     <p style="padding-left : 2%">This project aims to look at the world and identify the progress being made by countries across the globe. The question that we try to answer
     is that are developing countries showing a trend towards becoming fully developed or if it's just a dream</p>
+  </div>
+
+  <div class="col-sm-offet-1 col-sm-10" >
+    <h2 class="text-center">About the Visualization</h2>
+    <div class="list-group">
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">About the Data</h4>
+        <p class="list-group-item-text">The data set has been picked up from the World Bank indicators that are freely provided. The data provides a year by year breakdown
+          of how countries across the world are faring on various parameters. The World Bank provides an exhaustive list of parameters, for the purpose of this project
+          I have selected a subset of these.
+        </p>
+      </div>
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">The Visualization Structure</h4>
+        <p class="list-group-item-text">I chose the <b>Interactive Slideshow</b> approach. Following this page you have the option of viewing the data on a macroscopic scale
+          to analyse the urbanization of countries from 1980 to 2014. You can then interact with the data and select countries which you want to take a deeper look into.
+          You can also select any one the presets which is a group of countries that have already been shortlisted.
+        </p>
+      </div>
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">Scenes</h4>
+        <p class="list-group-item-text">The scenes have been kept uniform in order to add a level of coherence for the user. The graph is placed on the left side of
+          the screen with information regarding the scenes, parameters, annotations and triggers on the right. Please look out for the <b>navigation markers</b> on the right to proceed.
+        </p>
+      </div>
+    </div>
   </div>
 
 
@@ -115,10 +141,10 @@
   </div>
   <div class="fixed_horizontal" style="display:none">
     <span>
-      <a href="#Page3Part1" class="h_scroller" id="Page3Part1Marker">.</a>
-      <a href="#Page3Part2" class="h_scroller" id="Page3Part2Marker">.</a>
-      <a href="#Page3Part3" class="h_scroller" id="Page3Part3Marker">.</a>
-      <a href="#Page3Part4" class="h_scroller" id="Page3Part4Marker">.</a>
+      <a href="#Page3Part1" class="h_scroller" id="Page3Part1Marker"><span class="glyphicon glyphicon-asterisk" style="color:red" title="Life Expectancy" id="SubMark1"></span></a>
+      <a href="#Page3Part2" class="h_scroller" id="Page3Part2Marker"><span class="glyphicon glyphicon-asterisk" style="color:black" title="Infant Mortality" id="SubMark2"></span></a>
+      <a href="#Page3Part3" class="h_scroller" id="Page3Part3Marker"><span class="glyphicon glyphicon-asterisk" style="color:black" title="Sanitation" id="SubMark3"></span></a>
+      <a href="#Page3Part4" class="h_scroller" id="Page3Part4Marker"><span class="glyphicon glyphicon-asterisk" style="color:black" title="Gross National Income" id="SubMark4"></span></a>
     </span>
   </div>
   <div style="clear:both"></div>

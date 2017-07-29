@@ -35,7 +35,7 @@
   background: black ;
   border: 1px white ;
   color: white;
-  margin-top: 5px;
+  margin-top: 5%;
   pointer-events: none;
 }
 
@@ -46,20 +46,21 @@
 
 .pos_fixed {
     position: fixed;
-    top: 40%;
+    top: 50%;
     right: 0;
     width: 20px;
     /*border: 3px solid #73AD21;*/
-    font-size:3em;
+    font-size:1em;
     z-index : 20000;
+    color: black;
 }
 
 .fixed_horizontal{
     position: fixed;
-    top: 95%;
+    top: 2%;
     left: 45%;
     width: 200px;
-    font-size:3em;
+    font-size:1em;
     z-index : 20000;
 }
 

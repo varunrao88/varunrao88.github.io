@@ -80,18 +80,48 @@ function proc_data(){
         $(".fixed_horizontal").css('display','none');
       }
 
+      if(id == "#Page1"){
+        $("#Mark1").css('color','red');
+        $("#Mark2").css('color','black');
+      }
+      else if(id == "#Page2"){
+        $("#Mark1").css('color','black');
+        $("#Mark2").css('color','red');
+      }
+      else{
+        $("#Mark1").css('color','black');
+        $("#Mark2").css('color','black');
+      }
+
 
       $('html,body').animate({
           scrollTop: $(id).offset().top},
           'slow');
+
+      $('html,body').animate({
+          scrollLeft: '5px'},
+          'slow');
   });
+
+  function change_sub_mark(id){
+
+    $("#SubMark1").css('color','black');
+    $("#SubMark2").css('color','black');
+    $("#SubMark3").css('color','black');
+    $("#SubMark4").css('color','black');
+
+    $(id).css('color','red');
+
+  }
 
   $(".h_scroller").click(function(e){
     e.preventDefault();
     var id = $(this).attr('href');
 
+
     if (id == "#Page3Part1"){
       // Life Expectancy
+      change_sub_mark("#SubMark1");
       $('html,body').animate({
           scrollLeft: $("#Page3Part1").offset().left},
           'slow');
@@ -101,6 +131,7 @@ function proc_data(){
     else if(id == "#Page3Part2"){
       // Infant Mortality
       //show_SocioEcoData_IM();
+      change_sub_mark("#SubMark2");
       $('html,body').animate({
           scrollLeft: $("#Page3Part2").offset().left},
           'slow');
@@ -110,6 +141,7 @@ function proc_data(){
     else if(id == "#Page3Part3"){
       // Sanitation
       // show_SocioEcoData_SAN();
+      change_sub_mark("#SubMark3");
       $('html,body').animate({
           scrollLeft: $("#Page3Part3").offset().left},
           'slow');
@@ -119,6 +151,7 @@ function proc_data(){
     else if(id == "#Page3Part4"){
       // Economic Indicator - GNI
       // show_SocioEcoData_GNI();
+      change_sub_mark("#SubMark4");
       $('html,body').animate({
           scrollLeft: $("#Page3Part4").offset().left},
           'slow');
@@ -361,6 +394,9 @@ $('#ESIndicators').click(function () {
     selectedCountries_ESData['Low Income'] = dES['Low income'];
     selectedCountries_ESData['Middle Income'] = dES['Middle income'];
 
+    $("#Mark1").css('color','black');
+    $("#Mark2").css('color','black');
+
     // console.log(selectedCountries_ESData);
     show_SocioEcoData_LE();
 
@@ -464,7 +500,7 @@ function show_SocioEcoData_LE(){
                   // var x = d3.mouse(this)[0] + 120;
                   // var y =  d3.mouse(this)[1];
                   var x = d3.event.pageX;
-                  var y = d3.event.pageY;
+                  var y = d3.event.pageY - 90;
 
                   tooltip2.style('opacity',0.7)
                          .style('left', x + 'px')
@@ -591,7 +627,7 @@ function show_SocioEcoData_IM(){
                   // var x = d3.mouse(this)[0] + 120;
                   // var y =  d3.mouse(this)[1];
                   var x = d3.event.pageX;
-                  var y = d3.event.pageY;
+                  var y = d3.event.pageY - 90;
 
                   tooltip2.style('opacity',0.7)
                          .style('left', x + 'px')
@@ -688,7 +724,7 @@ function show_SocioEcoData_SAN(){
   // console.log(date_extent_array);
   // console.log(extent_year);
   var x = d3.scaleTime().range([0,width]).domain(extent_year);
-  var y = d3.scaleLinear().range([height,0]).domain(data_extent);
+  var y = d3.scaleLinear().range([height,0]).domain([0,120]);
   //
   var valueLine = d3.line().x(function(d){  return x(d.date) })
                            .y(function(d){  return y(d.val)  });
@@ -723,7 +759,8 @@ function show_SocioEcoData_SAN(){
                   // var x = d3.mouse(this)[0] + 120;
                   // var y =  d3.mouse(this)[1];
                   var x = d3.event.pageX;
-                  var y = d3.event.pageY;
+                  var y = d3.event.pageY - 90;
+                  console.log(x + " " + y);
 
                   tooltip2.style('opacity',0.7)
                          .style('left', x + 'px')
@@ -859,7 +896,7 @@ function show_SocioEcoData_GNI(){
                   // var x = d3.mouse(this)[0] + 120;
                   // var y =  d3.mouse(this)[1];
                   var x = d3.event.pageX;
-                  var y = d3.event.pageY;
+                  var y = d3.event.pageY - 90;
 
                   tooltip2.style('opacity',0.7)
                          .style('left', x + 'px')
