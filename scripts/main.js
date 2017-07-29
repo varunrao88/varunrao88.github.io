@@ -3,11 +3,11 @@ var CountryData = new Array();
 var Country_continent_code = new Array();
 
 var selectedCountries = new Array();
-var selectedCountries_ESData = new Array();
+var selectedCountries_ESData = new Object();
 
 d3.json('data/countrydata.json',function(e,d2){
 
-  console.log(e);
+  // console.log(e);
   CountryData = d2;
 
   d3.json('/data/continent_data.json',function(e,d){
@@ -136,7 +136,7 @@ function proc_data(){
           var y =  d3.mouse(this)[1];
           // var x = d3.event.pageX;
           // var y = d3.event.pageY;
-          console.log(x + "," + y);
+          // console.log(x + "," + y);
           //console.log("In");
           tooltip.style('opacity',0.7)
                  .style('left', x + 'px')
@@ -157,7 +157,7 @@ function proc_data(){
     .on("mouseout",function(d,i){
       tooltip.style('opacity',0)
       d3.select(this).style("fill","none");
-      console.log(d3.mouse(this));
+      // console.log(d3.mouse(this));
       //console.log("Out");
     })
     .on("click",function(d,i){
@@ -272,7 +272,7 @@ function proc_data(){
 };
 
 function generatelistonScreen(){
-  console.log(selectedCountries);
+  // console.log(selectedCountries);
   $("#selected_countries").html("");
   var html_ele = "";
   for(var i = 0 ; i < selectedCountries.length ; i++){
@@ -301,7 +301,7 @@ $('#selected_countries').on('click','.remove_click',function(){
 
 $('#ESIndicators').click(function () {
 
-  console.log('Fetching Data');
+  // console.log('Fetching Data');
   d3.json('data/document.json',function(e,dES){
 
     for(var i = 0; i < selectedCountries.length ; i++){
@@ -339,35 +339,66 @@ function show_SocioEcoData(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
-  var o = selectedCountries_ESData['Middle Income'].SOC_LE;
-
   var timeParser = d3.timeParse("%d-%m-%Y");
+  var complete_list_country = new Array();
+  var date_extent_array = new Array();
 
-  var temp_array = new Array();
-  $.each(o, function(k,v){
-    var new_o = new Object();
+  $.each(selectedCountries_ESData, function(cname, value_object){
+    var o = value_object.SOC_LE;
+    var temp_array = new Array();
 
-    var temp_date = '01-01-' + k;
-    // console.log(temp_date);
+    $.each(o, function(k,v){
+      var new_o = new Object();
 
-    new_o.date = timeParser(temp_date);
-    new_o.val = +v;
-    temp_array.push(new_o);
-  });
+      var temp_date = '01-01-' + k;
 
-  console.log(temp_array);
-  var extent_year = d3.extent(temp_array,function(d){ return d.date });
-  console.log(extent_year);
+      new_o.cname = cname;
+      new_o.date = timeParser(temp_date);
+      new_o.val = +v;
+      temp_array.push(new_o);
+      date_extent_array.push(new_o.date);
+    });
+
+    complete_list_country.push(temp_array);
+  })
+
+  // var o = selectedCountries_ESData['Middle Income'].SOC_LE;
+
+
+
+  // var temp_array = new Array();
+  // $.each(o, function(k,v){
+  //   var new_o = new Object();
+  //
+  //   var temp_date = '01-01-' + k;
+  //   // console.log(temp_date);
+  //
+  //   new_o.date = timeParser(temp_date);
+  //   new_o.val = +v;
+  //   temp_array.push(new_o);
+  // });
+
+  console.log(complete_list_country);
+  // console.log(temp_array);
+
+  // UNCOMMENT HERE
+  var extent_year = d3.extent(date_extent_array);
+  // console.log(date_extent_array);
+  // console.log(extent_year);
   var x = d3.scaleTime().range([0,width]).domain(extent_year);
   var y = d3.scaleLinear().range([height,0]).domain([0,100]);
-
+  //
   var valueLine = d3.line().x(function(d){  return x(d.date) })
                            .y(function(d){  return y(d.val)  });
 
-  line_graph.append("path")
-            .datum(temp_array)
-            .attr("class","line")
-            .attr("d",valueLine);
+
+  for (var i = 0; i < complete_list_country.length; i++){
+    temp_array = complete_list_country[i];
+    line_graph.append("path")
+              .datum(temp_array)
+              .attr("class","line")
+              .attr("d",valueLine);
+  }
 
   line_graph.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -378,10 +409,4 @@ function show_SocioEcoData(){
 
   // console.log(temp_array);
 
-}
-
-$("#clickme").click(function () {
-
-console.log(d3.selectAll("circle").filter(function(d) { return d.continent = "Asia" }))
-
-});
+};
