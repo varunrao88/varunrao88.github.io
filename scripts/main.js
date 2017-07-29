@@ -321,6 +321,10 @@ $('#ESIndicators').click(function () {
   // console.log('Fetching Data');
   d3.json('data/document.json',function(e,dES){
 
+    if (e){
+      console.log(e);
+    }
+    else{
     for(var i = 0; i < selectedCountries.length ; i++){
       var o = new Object();
       o = dES[selectedCountries[i]];
@@ -332,7 +336,7 @@ $('#ESIndicators').click(function () {
 
     // console.log(selectedCountries_ESData);
     show_SocioEcoData_LE();
-
+    }
 
   });
 
