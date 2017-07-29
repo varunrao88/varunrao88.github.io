@@ -311,7 +311,7 @@ function proc_data(){
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("% of Rural Population in 204");
+      .text("% of Rural Population in 2004");
 
 };
 
@@ -385,12 +385,6 @@ $('#ESIndicators').click(function () {
 
 function show_SocioEcoData_LE(){
 
-  // $('html,body').animate({
-  //     scrollTop: $("#Page3").offset().top},
-  //     'slow');
-  //
-  // $(".fixed_horizontal").css('display','initial');
-
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
   var height = $(window).height() - margin.top - margin.bottom;
@@ -463,7 +457,7 @@ function show_SocioEcoData_LE(){
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
-            .attr("r","2")
+            .attr("r","4")
             .style("fill","black")
             .on("mouseover",function(d,i){
 
@@ -497,21 +491,29 @@ function show_SocioEcoData_LE(){
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
+  line_graph.append("text")
+            .attr("transform",
+             "translate(" + (width/2) + " ," + (height + margin.top + 5) + ")")
+             .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Year");
+
   line_graph.append("g")
             .call(d3.axisLeft(y));
 
+  line_graph.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Life Expectancy in years");
 };
 
 // Infant Mortality
 function show_SocioEcoData_IM(){
 
   var tooltip = d3.select("#tooltip");
-
-  // $('html,body').animate({
-  //     scrollTop: $("#Page3").offset().top},
-  //     'slow');
-  //
-  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -582,7 +584,7 @@ function show_SocioEcoData_IM(){
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
-            .attr("r","2")
+            .attr("r","4")
             .style("fill","black")
             .on("mouseover",function(d,i){
 
@@ -617,19 +619,30 @@ function show_SocioEcoData_IM(){
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
+  line_graph.append("text")
+            .attr("transform",
+                   "translate(" + (width/2) + " ," + (height + margin.top + 5) + ")")
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Year");
+
   line_graph.append("g")
             .call(d3.axisLeft(y));
+
+
+
+  line_graph.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Number of deaths per 1000 births");
 
 };
 
 // Sanitation Data
 function show_SocioEcoData_SAN(){
-
-  // $('html,body').animate({
-  //     scrollTop: $("#Page3").offset().top},
-  //     'slow');
-  //
-  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -703,7 +716,7 @@ function show_SocioEcoData_SAN(){
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
-            .attr("r","2")
+            .attr("r","4")
             .style("fill","black")
             .on("mouseover",function(d,i){
 
@@ -737,19 +750,33 @@ function show_SocioEcoData_SAN(){
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
+  line_graph.append("text")
+            .attr("transform",
+                     "translate(" + (width/2) + " ," + (height + margin.top + 5) + ")")
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Year");
+
   line_graph.append("g")
             .call(d3.axisLeft(y));
 
+  line_graph.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Percetage of population with access to Sanitation");
 };
 
 // ECO LINE - GNI
 function show_SocioEcoData_GNI(){
 
-  $('html,body').animate({
-      scrollTop: $("#Page3").offset().top},
-      'slow');
-
-  $(".fixed_horizontal").css('display','initial');
+  // $('html,body').animate({
+  //     scrollTop: $("#Page3").offset().top},
+  //     'slow');
+  //
+  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -825,7 +852,7 @@ function show_SocioEcoData_GNI(){
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
-            .attr("r","2")
+            .attr("r","4")
             .style("fill","black")
             .on("mouseover",function(d,i){
 
@@ -859,7 +886,22 @@ function show_SocioEcoData_GNI(){
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
+  line_graph.append("text")
+            .attr("transform",
+                   "translate(" + (width/2) + " ," + (height + margin.top + 5) + ")")
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Year");
+
   line_graph.append("g")
             .call(d3.axisLeft(y));
+
+  line_graph.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("GNI in US dollars");
 
 };
