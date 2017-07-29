@@ -81,7 +81,24 @@ function proc_data(){
   $(".h_scroller").click(function(e){
     e.preventDefault();
     var id = $(this).attr('href');
-    // console.log(id);
+
+    if (id == "#Page3Part1"){
+      // Life Expectancy
+      show_SocioEcoData_LE();
+    }
+    else if(id == "#Page3Part2"){
+      // Infant Mortality
+      show_SocioEcoData_IM();
+    }
+    else if(id == "#Page3Part3"){
+      // Sanitation
+      show_SocioEcoData_SAN();
+    }
+    else if(id == "#Page3Part4"){
+      // Economic Indicator - GNI
+      show_SocioEcoData_GNI();
+    }
+
     $('html,body').animate({
         scrollLeft: $(id).offset().left},
         1000);
@@ -314,7 +331,7 @@ $('#ESIndicators').click(function () {
     selectedCountries_ESData['Middle Income'] = dES['Middle income'];
 
     // console.log(selectedCountries_ESData);
-    show_SocioEcoData();
+    show_SocioEcoData_LE();
 
 
   });
@@ -322,7 +339,8 @@ $('#ESIndicators').click(function () {
 
 });
 
-function show_SocioEcoData(){
+function show_SocioEcoData_LE(){
+
   $('html,body').animate({
       scrollTop: $("#Page3").offset().top},
       'slow');
@@ -362,22 +380,6 @@ function show_SocioEcoData(){
     complete_list_country.push(temp_array);
   })
 
-  // var o = selectedCountries_ESData['Middle Income'].SOC_LE;
-
-
-
-  // var temp_array = new Array();
-  // $.each(o, function(k,v){
-  //   var new_o = new Object();
-  //
-  //   var temp_date = '01-01-' + k;
-  //   // console.log(temp_date);
-  //
-  //   new_o.date = timeParser(temp_date);
-  //   new_o.val = +v;
-  //   temp_array.push(new_o);
-  // });
-
   console.log(complete_list_country);
   // console.log(temp_array);
 
@@ -392,12 +394,19 @@ function show_SocioEcoData(){
                            .y(function(d){  return y(d.val)  });
 
 
+
+
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+
   for (var i = 0; i < complete_list_country.length; i++){
     temp_array = complete_list_country[i];
     line_graph.append("path")
               .datum(temp_array)
               .attr("class","line")
-              .attr("d",valueLine);
+              .attr("d",valueLine)
+              .style("stroke",colors(temp_array[0].cname));
   }
 
   line_graph.append("g")
@@ -407,6 +416,252 @@ function show_SocioEcoData(){
   line_graph.append("g")
             .call(d3.axisLeft(y));
 
+};
+
+// Infant Mortality
+function show_SocioEcoData_IM(){
+
+  $('html,body').animate({
+      scrollTop: $("#Page3").offset().top},
+      'slow');
+
+  $(".fixed_horizontal").css('display','initial');
+
+  var margin = {top: 20, right: 20, bottom: 50, left: 70};
+  var width =  0.6 * $(window).width() - margin.left - margin.right;
+  var height = $(window).height() - margin.top - margin.bottom;
+
+  var line_graph = d3.select("#Soc_IM_Line")
+    .attr("width",(width + margin.left + margin.right))
+    .attr("height",(height + margin.top + margin.bottom))
+    .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  var timeParser = d3.timeParse("%d-%m-%Y");
+  var complete_list_country = new Array();
+  var date_extent_array = new Array();
+  var value_range = new Array();
+
+  $.each(selectedCountries_ESData, function(cname, value_object){
+    var o = value_object.SOC_IM;
+    var temp_array = new Array();
+
+    $.each(o, function(k,v){
+      var new_o = new Object();
+
+      var temp_date = '01-01-' + k;
+
+      new_o.cname = cname;
+      new_o.date = timeParser(temp_date);
+      new_o.val = +v;
+      temp_array.push(new_o);
+
+      date_extent_array.push(new_o.date);
+      value_range.push(new_o.val);
+    });
+
+    complete_list_country.push(temp_array);
+  })
+
+  console.log(complete_list_country);
   // console.log(temp_array);
+
+  // UNCOMMENT HERE
+  var extent_year = d3.extent(date_extent_array);
+  var extent_data = d3.extent(value_range);
+  // console.log(date_extent_array);
+  // console.log(extent_year);
+  var x = d3.scaleTime().range([0,width]).domain(extent_year);
+  var y = d3.scaleLinear().range([height,0]).domain(extent_data);
+  //
+  var valueLine = d3.line().x(function(d){  return x(d.date) })
+                           .y(function(d){  return y(d.val)  });
+
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+  for (var i = 0; i < complete_list_country.length; i++){
+    temp_array = complete_list_country[i];
+    line_graph.append("path")
+              .datum(temp_array)
+              .attr("class","line")
+              .attr("d",valueLine)
+              .style("stroke",colors(temp_array[0].cname));
+  }
+
+  line_graph.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+  line_graph.append("g")
+            .call(d3.axisLeft(y));
+
+};
+
+// Sanitation Data
+function show_SocioEcoData_SAN(){
+
+  $('html,body').animate({
+      scrollTop: $("#Page3").offset().top},
+      'slow');
+
+  $(".fixed_horizontal").css('display','initial');
+
+  var margin = {top: 20, right: 20, bottom: 50, left: 70};
+  var width =  0.6 * $(window).width() - margin.left - margin.right;
+  var height = $(window).height() - margin.top - margin.bottom;
+
+  var line_graph = d3.select("#Soc_SAN_Line")
+    .attr("width",(width + margin.left + margin.right))
+    .attr("height",(height + margin.top + margin.bottom))
+    .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  var timeParser = d3.timeParse("%d-%m-%Y");
+  var complete_list_country = new Array();
+  var date_extent_array = new Array();
+  var value_range = new Array();
+
+  $.each(selectedCountries_ESData, function(cname, value_object){
+    var o = value_object.SOC_SAN;
+    var temp_array = new Array();
+
+    $.each(o, function(k,v){
+      var new_o = new Object();
+
+      var temp_date = '01-01-' + k;
+
+      new_o.cname = cname;
+      new_o.date = timeParser(temp_date);
+      new_o.val = +v;
+      temp_array.push(new_o);
+      date_extent_array.push(new_o.date);
+      value_range.push(new_o.val);
+    });
+
+    complete_list_country.push(temp_array);
+  })
+
+  console.log(complete_list_country);
+  // console.log(temp_array);
+
+  // UNCOMMENT HERE
+  var extent_year = d3.extent(date_extent_array);
+  var data_extent = d3.extent(value_range);
+  // console.log(date_extent_array);
+  // console.log(extent_year);
+  var x = d3.scaleTime().range([0,width]).domain(extent_year);
+  var y = d3.scaleLinear().range([height,0]).domain(data_extent);
+  //
+  var valueLine = d3.line().x(function(d){  return x(d.date) })
+                           .y(function(d){  return y(d.val)  });
+
+
+
+
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+
+  for (var i = 0; i < complete_list_country.length; i++){
+    temp_array = complete_list_country[i];
+    line_graph.append("path")
+              .datum(temp_array)
+              .attr("class","line")
+              .attr("d",valueLine)
+              .style("stroke",colors(temp_array[0].cname));
+  }
+
+  line_graph.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+  line_graph.append("g")
+            .call(d3.axisLeft(y));
+
+};
+
+// ECO LINE - GNI
+function show_SocioEcoData_GNI(){
+
+  $('html,body').animate({
+      scrollTop: $("#Page3").offset().top},
+      'slow');
+
+  $(".fixed_horizontal").css('display','initial');
+
+  var margin = {top: 20, right: 20, bottom: 50, left: 70};
+  var width =  0.6 * $(window).width() - margin.left - margin.right;
+  var height = $(window).height() - margin.top - margin.bottom;
+
+  var line_graph = d3.select("#ECO_GNI")
+    .attr("width",(width + margin.left + margin.right))
+    .attr("height",(height + margin.top + margin.bottom))
+    .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  var timeParser = d3.timeParse("%d-%m-%Y");
+  var complete_list_country = new Array();
+  var date_extent_array = new Array();
+  var data_extent_array = new Array();
+
+  $.each(selectedCountries_ESData, function(cname, value_object){
+    var o = value_object.ECO_GNI;
+    var temp_array = new Array();
+
+    $.each(o, function(k,v){
+      var new_o = new Object();
+
+      var temp_date = '01-01-' + k;
+
+      new_o.cname = cname;
+      new_o.date = timeParser(temp_date);
+      if(typeof(v) == 'string'){
+        v = v.replace(",","");
+      }
+      new_o.val = +v;
+      temp_array.push(new_o);
+      date_extent_array.push(new_o.date);
+      data_extent_array.push(new_o.val);
+    });
+
+    complete_list_country.push(temp_array);
+  })
+
+  console.log(complete_list_country);
+  // console.log(temp_array);
+
+  // UNCOMMENT HERE
+  var extent_year = d3.extent(date_extent_array);
+  var extent_gni = d3.extent(data_extent_array);
+  // console.log(date_extent_array);
+  // console.log(extent_year);
+  var x = d3.scaleTime().range([0,width]).domain(extent_year);
+  var y = d3.scaleLinear().range([height,0]).domain(extent_gni);
+  //
+  var valueLine = d3.line().x(function(d){  return x(d.date) })
+                           .y(function(d){  return y(d.val)  });
+
+
+
+
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+
+  for (var i = 0; i < complete_list_country.length; i++){
+    temp_array = complete_list_country[i];
+    line_graph.append("path")
+              .datum(temp_array)
+              .attr("class","line")
+              .attr("d",valueLine)
+              .style("stroke",colors(temp_array[0].cname));
+  }
+
+  line_graph.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+  line_graph.append("g")
+            .call(d3.axisLeft(y));
 
 };
