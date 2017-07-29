@@ -417,12 +417,40 @@ function show_SocioEcoData_LE(){
     all_arrays = all_arrays.concat(temp_array);
   };
 
+  var tooltip2 = d3.select("#tooltip2");
+
   line_graph.selectAll("circle").data(all_arrays)
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
             .attr("r","2")
             .style("fill","black")
+            .on("mouseover",function(d,i){
+
+                  // var x = d3.mouse(this)[0] + 120;
+                  // var y =  d3.mouse(this)[1];
+                  var x = d3.event.pageX;
+                  var y = d3.event.pageY;
+
+                  tooltip2.style('opacity',0.7)
+                         .style('left', x + 'px')
+                         .style('top',  y + 'px')
+                         .html(function(){
+
+                            var str = "";
+                            str = "Country Name : " + d['cname'];
+                            str = str + "<br />";
+                            str = str + " Year : " + d['date'].getFullYear() + "<br />" ;
+                            str = str + " Value : " + d['val'] + "<br />" ;
+
+                            return str;
+
+                         });
+                  // console.log(d3.mouse(this));
+            })
+            .on("mouseout",function(d,i){
+              tooltip2.style('opacity',0);
+            });
 
 
   line_graph.append("g")
@@ -436,6 +464,8 @@ function show_SocioEcoData_LE(){
 
 // Infant Mortality
 function show_SocioEcoData_IM(){
+
+  var tooltip = d3.select("#tooltip");
 
   $('html,body').animate({
       scrollTop: $("#Page3").offset().top},
@@ -507,12 +537,40 @@ function show_SocioEcoData_IM(){
     all_arrays = all_arrays.concat(temp_array);
   }
 
+  var tooltip2 = d3.select("#tooltip2");
   line_graph.selectAll("circle").data(all_arrays)
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
             .attr("r","2")
             .style("fill","black")
+            .on("mouseover",function(d,i){
+
+                  // var x = d3.mouse(this)[0] + 120;
+                  // var y =  d3.mouse(this)[1];
+                  var x = d3.event.pageX;
+                  var y = d3.event.pageY;
+
+                  tooltip2.style('opacity',0.7)
+                         .style('left', x + 'px')
+                         .style('top',  y + 'px')
+                         .html(function(){
+
+                            var str = "";
+                            str = "Country Name : " + d['cname'];
+                            str = str + "<br />";
+                            str = str + " Year : " + d['date'].getFullYear() + "<br />" ;
+                            str = str + " Value : " + d['val'] + "<br />" ;
+
+                            return str;
+
+                         });
+                  // console.log(d3.mouse(this));
+            })
+            .on("mouseout",function(d,i){
+              tooltip2.style('opacity',0);
+            });
+
 
 
   line_graph.append("g")
@@ -600,13 +658,39 @@ function show_SocioEcoData_SAN(){
 
     all_arrays = all_arrays.concat(temp_array);
   }
-
+  var tooltip2 = d3.select("#tooltip2");
   line_graph.selectAll("circle").data(all_arrays)
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
             .attr("r","2")
             .style("fill","black")
+            .on("mouseover",function(d,i){
+
+                  // var x = d3.mouse(this)[0] + 120;
+                  // var y =  d3.mouse(this)[1];
+                  var x = d3.event.pageX;
+                  var y = d3.event.pageY;
+
+                  tooltip2.style('opacity',0.7)
+                         .style('left', x + 'px')
+                         .style('top',  y + 'px')
+                         .html(function(){
+
+                            var str = "";
+                            str = "Country Name : " + d['cname'];
+                            str = str + "<br />";
+                            str = str + " Year : " + d['date'].getFullYear() + "<br />" ;
+                            str = str + " Value : " + d['val'] + "<br />" ;
+
+                            return str;
+
+                         });
+                  // console.log(d3.mouse(this));
+            })
+            .on("mouseout",function(d,i){
+              tooltip2.style('opacity',0);
+            });
 
 
   line_graph.append("g")
@@ -696,13 +780,39 @@ function show_SocioEcoData_GNI(){
 
     all_arrays = all_arrays.concat(temp_array);
   }
-
+  var tooltip2 = d3.select("#tooltip2");
   line_graph.selectAll("circle").data(all_arrays)
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
             .attr("cy",function(d){ return y(d.val)})
             .attr("r","2")
             .style("fill","black")
+            .on("mouseover",function(d,i){
+
+                  // var x = d3.mouse(this)[0] + 120;
+                  // var y =  d3.mouse(this)[1];
+                  var x = d3.event.pageX;
+                  var y = d3.event.pageY;
+
+                  tooltip2.style('opacity',0.7)
+                         .style('left', x + 'px')
+                         .style('top',  y + 'px')
+                         .html(function(){
+
+                            var str = "";
+                            str = "Country Name : " + d['cname'];
+                            str = str + "<br />";
+                            str = str + " Year : " + d['date'].getFullYear() + "<br />" ;
+                            str = str + " Value : " + d['val'] + "<br />" ;
+
+                            return str;
+
+                         });
+                  // console.log(d3.mouse(this));
+            })
+            .on("mouseout",function(d,i){
+              tooltip2.style('opacity',0);
+            });
 
 
   line_graph.append("g")

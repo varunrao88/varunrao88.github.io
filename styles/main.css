@@ -27,6 +27,18 @@
     pointer-events: none;
 }
 
+#tooltip2 {
+  opacity: 0;
+  position: absolute ;
+  text-align: center ;
+  width: 200px; height: 100px;
+  background: black ;
+  border: 1px white ;
+  color: white;
+  margin-top: 5px;
+  pointer-events: none;
+}
+
 .legend rect{
   fill:white;
   stroke:black;
