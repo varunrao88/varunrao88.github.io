@@ -403,15 +403,27 @@ function show_SocioEcoData_LE(){
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
 
-
+  var all_arrays = new Array();
   for (var i = 0; i < complete_list_country.length; i++){
     temp_array = complete_list_country[i];
     line_graph.append("path")
               .datum(temp_array)
               .attr("class","line")
               .attr("d",valueLine)
-              .style("stroke",colors(temp_array[0].cname));
-  }
+              .style("stroke",colors(temp_array[0].cname))
+              .on('mouseover',function(d,i){
+                console.log(d);
+              });
+    all_arrays = all_arrays.concat(temp_array);
+  };
+
+  line_graph.selectAll("circle").data(all_arrays)
+            .enter().append("circle")
+            .attr("cx",function(d){ return x(d.date) })
+            .attr("cy",function(d){ return y(d.val)})
+            .attr("r","2")
+            .style("fill","black")
+
 
   line_graph.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -483,6 +495,7 @@ function show_SocioEcoData_IM(){
 
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
+  var all_arrays = new Array();
   for (var i = 0; i < complete_list_country.length; i++){
     temp_array = complete_list_country[i];
     line_graph.append("path")
@@ -490,7 +503,17 @@ function show_SocioEcoData_IM(){
               .attr("class","line")
               .attr("d",valueLine)
               .style("stroke",colors(temp_array[0].cname));
+
+    all_arrays = all_arrays.concat(temp_array);
   }
+
+  line_graph.selectAll("circle").data(all_arrays)
+            .enter().append("circle")
+            .attr("cx",function(d){ return x(d.date) })
+            .attr("cy",function(d){ return y(d.val)})
+            .attr("r","2")
+            .style("fill","black")
+
 
   line_graph.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -564,6 +587,7 @@ function show_SocioEcoData_SAN(){
 
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
+  var all_arrays = new Array();
 
 
   for (var i = 0; i < complete_list_country.length; i++){
@@ -573,7 +597,17 @@ function show_SocioEcoData_SAN(){
               .attr("class","line")
               .attr("d",valueLine)
               .style("stroke",colors(temp_array[0].cname));
+
+    all_arrays = all_arrays.concat(temp_array);
   }
+
+  line_graph.selectAll("circle").data(all_arrays)
+            .enter().append("circle")
+            .attr("cx",function(d){ return x(d.date) })
+            .attr("cy",function(d){ return y(d.val)})
+            .attr("r","2")
+            .style("fill","black")
+
 
   line_graph.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -650,7 +684,7 @@ function show_SocioEcoData_GNI(){
 
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-
+  var all_arrays = new Array();
 
   for (var i = 0; i < complete_list_country.length; i++){
     temp_array = complete_list_country[i];
@@ -659,7 +693,17 @@ function show_SocioEcoData_GNI(){
               .attr("class","line")
               .attr("d",valueLine)
               .style("stroke",colors(temp_array[0].cname));
+
+    all_arrays = all_arrays.concat(temp_array);
   }
+
+  line_graph.selectAll("circle").data(all_arrays)
+            .enter().append("circle")
+            .attr("cx",function(d){ return x(d.date) })
+            .attr("cy",function(d){ return y(d.val)})
+            .attr("r","2")
+            .style("fill","black")
+
 
   line_graph.append("g")
             .attr("transform", "translate(0," + height + ")")
