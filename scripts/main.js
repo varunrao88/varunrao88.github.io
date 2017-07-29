@@ -5,6 +5,14 @@ var Country_continent_code = new Array();
 var selectedCountries = new Array();
 var selectedCountries_ESData = new Object();
 
+var load_state =
+{
+  "Page3Part1" : false,
+  "Page3Part2" : false,
+  "Page3Part3" : false,
+  "Page3Part4" : false
+}
+
 d3.json('data/countrydata.json',function(e,d2){
 
   // console.log(e);
@@ -84,19 +92,38 @@ function proc_data(){
 
     if (id == "#Page3Part1"){
       // Life Expectancy
-      show_SocioEcoData_LE();
+      $('html,body').animate({
+          scrollLeft: $("#Page3Part1").offset().left},
+          'slow');
+
+      $(".fixed_horizontal").css('display','initial');
     }
     else if(id == "#Page3Part2"){
       // Infant Mortality
-      show_SocioEcoData_IM();
+      //show_SocioEcoData_IM();
+      $('html,body').animate({
+          scrollLeft: $("#Page3Part2").offset().left},
+          'slow');
+
+      $(".fixed_horizontal").css('display','initial');
     }
     else if(id == "#Page3Part3"){
       // Sanitation
-      show_SocioEcoData_SAN();
+      // show_SocioEcoData_SAN();
+      $('html,body').animate({
+          scrollLeft: $("#Page3Part3").offset().left},
+          'slow');
+
+      $(".fixed_horizontal").css('display','initial');
     }
     else if(id == "#Page3Part4"){
       // Economic Indicator - GNI
-      show_SocioEcoData_GNI();
+      // show_SocioEcoData_GNI();
+      $('html,body').animate({
+          scrollLeft: $("#Page3Part4").offset().left},
+          'slow');
+
+      $(".fixed_horizontal").css('display','initial');
     }
 
     $('html,body').animate({
@@ -336,7 +363,20 @@ $('#ESIndicators').click(function () {
 
     // console.log(selectedCountries_ESData);
     show_SocioEcoData_LE();
-    }
+
+    show_SocioEcoData_IM();
+
+    show_SocioEcoData_SAN();
+
+    show_SocioEcoData_GNI();
+
+    $('html,body').animate({
+        scrollTop: $("#Page3").offset().top},
+        'slow');
+
+    $(".fixed_horizontal").css('display','initial');
+
+  };
 
   });
 
@@ -345,11 +385,11 @@ $('#ESIndicators').click(function () {
 
 function show_SocioEcoData_LE(){
 
-  $('html,body').animate({
-      scrollTop: $("#Page3").offset().top},
-      'slow');
-
-  $(".fixed_horizontal").css('display','initial');
+  // $('html,body').animate({
+  //     scrollTop: $("#Page3").offset().top},
+  //     'slow');
+  //
+  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -467,11 +507,11 @@ function show_SocioEcoData_IM(){
 
   var tooltip = d3.select("#tooltip");
 
-  $('html,body').animate({
-      scrollTop: $("#Page3").offset().top},
-      'slow');
-
-  $(".fixed_horizontal").css('display','initial');
+  // $('html,body').animate({
+  //     scrollTop: $("#Page3").offset().top},
+  //     'slow');
+  //
+  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -585,11 +625,11 @@ function show_SocioEcoData_IM(){
 // Sanitation Data
 function show_SocioEcoData_SAN(){
 
-  $('html,body').animate({
-      scrollTop: $("#Page3").offset().top},
-      'slow');
-
-  $(".fixed_horizontal").css('display','initial');
+  // $('html,body').animate({
+  //     scrollTop: $("#Page3").offset().top},
+  //     'slow');
+  //
+  // $(".fixed_horizontal").css('display','initial');
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
