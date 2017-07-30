@@ -526,7 +526,29 @@ function show_SocioEcoData_LE(){
     .attr("x",function(d,i){ return 20})
     .text(function(d){ return d });
 
-  console.log(complete_list_country);
+    var t = d3.transition()
+        .duration(500)
+        .ease(d3.easeLinear);
+
+  d3.selectAll("#legend_le g rect")
+    .on("mouseover",function(d,i){
+      sel = d;
+      d3.selectAll("#Soc_LE_Line circle").each(function(d1){
+          if(d1['cname'] != sel){
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','0.2');
+          }
+          else{
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','1');
+          }
+      })
+    })
+    .on("mouseout",function(d,i) {
+      d3.selectAll("#Soc_LE_Line circle").transition(t).style("opacity","1");
+    });
+
+  // console.log(complete_list_country);
 
 
   // UNCOMMENT HERE
@@ -692,6 +714,27 @@ var l_h = 0.8 * $(window).height();
     .attr("x",function(d,i){ return 20})
     .text(function(d){ return d });
 
+    var t = d3.transition()
+        .duration(500)
+        .ease(d3.easeLinear);
+
+  d3.selectAll("#legend_im g rect")
+    .on("mouseover",function(d,i){
+      sel = d;
+      d3.selectAll("#Soc_IM_Line circle").each(function(d1){
+          if(d1['cname'] != sel){
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','0.2');
+          }
+          else{
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','1');
+          }
+      })
+    })
+    .on("mouseout",function(d,i) {
+      d3.selectAll("#Soc_IM_Line circle").transition(t).style("opacity","1");
+    });
 
   // UNCOMMENT HERE
   var extent_year = d3.extent(date_extent_array);
@@ -838,6 +881,8 @@ function show_SocioEcoData_SAN(){
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
 
+
+
 legend.selectAll("rect").data(only_countries).enter().append("g").append("rect")
         .attr("height","10")
         .attr("width","10")
@@ -845,12 +890,38 @@ legend.selectAll("rect").data(only_countries).enter().append("g").append("rect")
         .style("stroke",function(d){return colors(d)})
         .attr("y",function(d,i){ return i * 20 + 10 });
 
+
+
   d3.selectAll("#legend_san g")
     .data(only_countries)
     .append("text")
     .attr("y",function(d,i){ return 20 + ((i*20)) })
     .attr("x",function(d,i){ return 20})
     .text(function(d){ return d });
+
+    var t = d3.transition()
+        .duration(500)
+        .ease(d3.easeLinear);
+
+  d3.selectAll("#legend_san g rect")
+    .on("mouseover",function(d,i){
+      sel = d;
+      d3.selectAll("#Soc_SAN_Line circle").each(function(d1){
+          if(d1['cname'] != sel){
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','0.2');
+          }
+          else{
+            d3.select(this).interrupt();
+            d3.select(this).transition(t).style('opacity','1');
+          }
+      })
+    })
+    .on("mouseout",function(d,i) {
+      d3.selectAll("#Soc_SAN_Line circle").transition(t).style("opacity","1");
+    });
+
+
 
   // UNCOMMENT HERE
   var extent_year = d3.extent(date_extent_array);
@@ -1019,6 +1090,29 @@ legend.selectAll("rect").data(only_countries).enter().append("g").append("rect")
     .attr("y",function(d,i){ return 20 + ((i*20)) })
     .attr("x",function(d,i){ return 20})
     .text(function(d){ return d });
+
+    var t = d3.transition()
+          .duration(500)
+          .ease(d3.easeLinear);
+
+    d3.selectAll("#legend_gni g rect")
+      .on("mouseover",function(d,i){
+        sel = d;
+        d3.selectAll("#ECO_GNI circle").each(function(d1){
+            if(d1['cname'] != sel){
+              d3.select(this).interrupt();
+              d3.select(this).transition(t).style('opacity','0.2');
+            }
+            else{
+              d3.select(this).interrupt();
+              d3.select(this).transition(t).style('opacity','1');
+            }
+        })
+      })
+      .on("mouseout",function(d,i) {
+        d3.selectAll("#ECO_GNI circle").transition(t).style("opacity","1");
+      });
+
 
   // UNCOMMENT HERE
   var extent_year = d3.extent(date_extent_array);
