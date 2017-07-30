@@ -474,6 +474,8 @@ function show_SocioEcoData_LE(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
+  line_graph.append("text").attr("x",20).attr("y",20).style("fill","rgb(105, 49, 132)").style("transform","scale(1.5)").text("Social Indicator : Life Expectancy vs Year");
+
   d3.select("#Soc_LE_Line").attr("width", width + 200 );
   var l_w = 0.6 * $(window).width();
 
@@ -629,6 +631,8 @@ function show_SocioEcoData_IM(){
     .attr("height",(height + margin.top + margin.bottom))
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  line_graph.append("text").attr("x","80").attr("y",20).style("fill","rgb(105, 49, 132)").style("transform","scale(1.5)").text("Social Indicator : Infant Mortality Rate Vs Year");
 
   var timeParser = d3.timeParse("%d-%m-%Y");
   var complete_list_country = new Array();
@@ -792,6 +796,8 @@ function show_SocioEcoData_SAN(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
+  line_graph.append("text").attr("x","10").attr("y",20).style("fill","rgb(105, 49, 132)").style("transform","scale(1.5)").text("Social Indicator : % of Population with Access to Sanitation vs Year");
+
   var timeParser = d3.timeParse("%d-%m-%Y");
   var complete_list_country = new Array();
   var date_extent_array = new Array();
@@ -954,6 +960,8 @@ function show_SocioEcoData_GNI(){
     .attr("height",(height + margin.top + margin.bottom))
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+  line_graph.append("text").attr("x","20").attr("y",20).style("fill","rgb(105, 49, 132)").style("transform","scale(1.5)").text("Economic Indicator : Gross National Income per Capita Vs Year");
 
   var timeParser = d3.timeParse("%d-%m-%Y");
   var complete_list_country = new Array();
