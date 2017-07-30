@@ -105,12 +105,12 @@ function proc_data(){
 
   function change_sub_mark(id){
 
-    $("#SubMark1").css('color','black');
-    $("#SubMark2").css('color','black');
-    $("#SubMark3").css('color','black');
-    $("#SubMark4").css('color','black');
+    $("#SubMark1").css('background-color','black');
+    $("#SubMark2").css('background-color','black');
+    $("#SubMark3").css('background-color','black');
+    $("#SubMark4").css('background-color','black');
 
-    $(id).css('color','red');
+    $(id).css('background-color','red');
 
   }
 
@@ -248,7 +248,7 @@ function proc_data(){
   // For the legend
   var l_w = 0.6 * $(window).width() - margin.right;
 
-  var l_h = 0.3 * $(window).height();
+  var l_h = 0.7 * $(window).height();
 
   d3.select("#scatterplot").attr("width", width + 200 );
 
@@ -474,7 +474,12 @@ function show_SocioEcoData_LE(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
-  var legend = d3.select("#Soc_LE_Line").append("g").attr("id","legend_le").attr("width",100).attr("height",100).attr("transform","translate(100,30)");
+  d3.select("#Soc_LE_Line").attr("width", width + 200 );
+  var l_w = 0.6 * $(window).width();
+
+  var l_h = 0.8 * $(window).height();
+
+  var legend = d3.select("#Soc_LE_Line").append("g").attr("id","legend_le").attr("width",100).attr("height",100).attr("transform","translate(" + l_w + "," + l_h + " )");
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
 
@@ -659,7 +664,13 @@ function show_SocioEcoData_IM(){
 
   var l_width = 0.6 * width;
 
-  var legend = d3.select("#Soc_IM_Line").append("g").attr("id","legend_im").attr("width",100).attr("height",100).attr("transform","translate(" + l_width + ",80)");
+  d3.select("#Soc_IM_Line").attr("width", width + 200 );
+
+  var l_w = 0.6 * $(window).width();
+
+var l_h = 0.8 * $(window).height();
+
+  var legend = d3.select("#Soc_IM_Line").append("g").attr("id","legend_im").attr("width",100).attr("height",100).attr("transform","translate(" + l_w + "," + l_h + " )");
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
 
@@ -812,7 +823,12 @@ function show_SocioEcoData_SAN(){
   // console.log(temp_array);
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-  var legend = d3.select("#Soc_SAN_Line").append("g").attr("id","legend_san").attr("width",100).attr("height",100).attr("transform","translate(100,30)");
+  d3.select("#Soc_SAN_Line").attr("width", width + 200 );
+  var l_w = 0.6 * $(window).width();
+
+ var l_h = 0.8 * $(window).height();
+
+  var legend = d3.select("#Soc_SAN_Line").append("g").attr("id","legend_san").attr("width",100).attr("height",100).attr("transform","translate(" + l_w + "," + l_h + " )");
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
 
@@ -971,7 +987,14 @@ function show_SocioEcoData_GNI(){
   var colors = d3.scaleOrdinal(d3.schemeCategory10);
   // console.log(complete_list_country);
   // console.log(temp_array);
-  var legend = d3.select("#ECO_GNI").append("g").attr("id","legend_gni").attr("width",100).attr("height",100).attr("transform","translate(100,30)");
+
+  d3.select("#ECO_GNI").attr("width", width + 200 );
+
+  var l_w = 0.6 * $(window).width();
+
+ var l_h = 0.8 * $(window).height();
+
+  var legend = d3.select("#ECO_GNI").append("g").attr("id","legend_gni").attr("width",100).attr("height",100).attr("transform","translate(" + l_w + "," + l_h + " )");
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
 
