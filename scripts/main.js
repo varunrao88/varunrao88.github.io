@@ -197,6 +197,8 @@ function proc_data(){
     .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
+  sp.append("text").attr("x","10").attr("y",10).style("fill","rgb(105, 49, 132)").style("transform","scale(1.2)").text("Overview of the Data : Change in % of Rural Population between 1980 to 2014");
+
   sp.selectAll("circle")
     .data(CountryData)
     .enter().append("circle")
