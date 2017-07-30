@@ -81,16 +81,16 @@ function proc_data(){
       }
 
       if(id == "#Page1"){
-        $("#Mark1").css('color','red');
-        $("#Mark2").css('color','black');
+        $("#Mark1").css('background-color','red');
+        $("#Mark2").css('background-color','black');
       }
       else if(id == "#Page2"){
-        $("#Mark1").css('color','black');
-        $("#Mark2").css('color','red');
+        $("#Mark1").css('background-color','black');
+        $("#Mark2").css('background-color','red');
       }
       else{
-        $("#Mark1").css('color','black');
-        $("#Mark2").css('color','black');
+        $("#Mark1").css('background-color','black');
+        $("#Mark2").css('background-color','black');
       }
 
 
@@ -234,8 +234,6 @@ function proc_data(){
     .on("mouseout",function(d,i){
       tooltip.style('opacity',0)
       d3.select(this).style("fill","none");
-      // console.log(d3.mouse(this));
-      //console.log("Out");
     })
     .on("click",function(d,i){
       if(selectedCountries.indexOf(d['Country Name']) == -1){
@@ -246,12 +244,18 @@ function proc_data(){
     ;
 
   // For the legend
+  var l_w = 0.6 * $(window).width() - margin.right;
+
+  var l_h = 0.3 * $(window).height();
+
+  d3.select("#scatterplot").attr("width", width + 200 );
+
   var legend = d3.select("#scatterplot")
   .append("g")
   .attr("id","legend")
   .attr("width",100)
   .attr("height",100)
-  .attr("transform","translate(100,30)");
+  .attr("transform","translate(" + l_w + "," + l_h + " )");
 
   legend.append("text").html("Legend").style('font-weight','bold').style("font-size",'18px');
 
@@ -396,8 +400,8 @@ $('#ESIndicators').click(function () {
     selectedCountries_ESData['Low Income'] = dES['Low income'];
     selectedCountries_ESData['Middle Income'] = dES['Middle income'];
 
-    $("#Mark1").css('color','black');
-    $("#Mark2").css('color','black');
+    $("#Mark1").css('background-color','black');
+    $("#Mark2").css('background-color','black');
 
     // console.log(selectedCountries_ESData);
     show_SocioEcoData_LE();
