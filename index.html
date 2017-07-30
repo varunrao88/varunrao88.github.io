@@ -77,12 +77,13 @@
 </div>
 
 <div id="Page2" class="col-sm-12">
+  <h4 style="color: rgb(105, 49, 132)" class="text-center">Overview of the Data : Change in % of Rural Population between 1980 to 2014</h4>
 <div class="col-sm-9">
 <svg id="scatterplot"></svg>
 </div>
 
-<div class="col-sm-3">
-  <h3 style="color: rgb(105, 49, 132)">Overview of the Data : Change in % of Rural Population between 1980 to 2014</h3>
+<div class="col-sm-3" style="max-height:100%">
+  <!-- <h5 style="color: rgb(105, 49, 132)">Overview of the Data : Change in % of Rural Population between 1980 to 2014</h5> -->
 
   <p>Please select countries for which you want to see social and economic growth in the next slide. <b>Click</b> on the Country
     and it will appear in the region below this paragraph. <span class="text-danger">NOTE: Only 5 can be selected</span>
@@ -105,9 +106,57 @@
     </div>
   </div>
 
-  <div style="margin-top: 1%"><h4 style="color : rgb(105, 49, 132)">Visualization Structure</h4>
-
-      <p><b>Scenes</b> : With this scene I have tried following Schneiderman's mantra. This scene is meant to provide <br />an overview of the data.
+  <div style="margin-top: 1%"><h5 style="color : rgb(105, 49, 132)">Visualization Structure</h5>
+    <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color: rgb(105, 49, 132); color: white">
+      <h6 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Scenes</a>
+      </h6>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">The data in this scene is for almost 200 countries. We try to contrast between the change in  population living in rural areas
+      between 1980 to 2014. The premise here is that a greater percentage change indicates greater urbanization which is an Indicator of development.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color: rgb(105, 49, 132); color: white">
+      <h6 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Annotations</a>
+      </h6>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">The annotations here are the tooltips on each country. The tooltip gives information regarding the population in 1980 and 2014. It also
+        gives you the population of the country that can help you contrast the population migration vs the actual population.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color: rgb(105, 49, 132); color: white">
+      <h6 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Parameters</a>
+      </h6>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">The parameters that you can select in this chart are the countries, you can select the countries you want to analyse. Clicking a country adds it to your bucket to process for further analysis.
+        You can also click on the button to take a deep dive into your selection.</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background-color: rgb(105, 49, 132); color: white">
+      <h6 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        Triggers</a>
+      </h6>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">The triggers are that if you select a country it gets added to your bucket. If you select the a continent from the legend the corresponding countries also get highlishted.</div>
+    </div>
+  </div>
+</div>
+      <!-- <p><b>Scenes</b> : With this scene I have tried following Schneiderman's mantra. This scene is meant to provide <br />an overview of the data.
         The data in this scene is for almost 200 countries. We try to contrast between the change in <br /> population living in rural areas
         between 1980 to 2014. The premise here is that a greater percentage change indicates greater urbanization which is an Indicator of development.
       </p>
@@ -117,8 +166,8 @@
       <p><b>Parameters</b> : The parameters that you can select in this chart are the countries, you can select the countries you want <br />to analyse. Clicking a country adds it to your bucket to process for further analysis.
         You can also click on the button to take a deep dive into your selection.
       </p>
-      <p><b>Triggers</b> : The triggers are that if you select a country it gets added to your bucket. If you select the a <br />continent from the legend the corresponding countries also get highlishted.</p>
-    </ul>
+      <p><b>Triggers</b> : The triggers are that if you select a country it gets added to your bucket. If you select the a <br />continent from the legend the corresponding countries also get highlishted.</p> -->
+
   </div>
 
 </div>
