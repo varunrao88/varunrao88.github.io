@@ -82,15 +82,44 @@
 </div>
 
 <div class="col-sm-3">
-  <h3>Overview of the Data</h3>
+  <h3 style="color: rgb(105, 49, 132)">Overview of the Data : Change in % of Rural Population between 1980 to 2014</h3>
 
-  <p class="text-info">Please select countries for which you want to see social and economic growth in the next slide. <br /> Please click on the Country
-    and it will appear in the region below this paragraph.
+  <p>Please select countries for which you want to see social and economic growth in the next slide. <b>Click</b> on the Country
+    and it will appear in the region below this paragraph. <span class="text-danger">NOTE: Only 5 can be selected</span>
   </p>
   <div id="selected_countries">
-
   </div>
-  <button class="col-sm-12 btn btn-success" id="ESIndicators" style="margin-top: 2%" disabled>Let's see the Eco-Socio Indicators</button>
+  <button class="col-sm-12 btn btn-success" id="ESIndicators" style="margin-top: 2%; margin-bottom: 2%" disabled>Let's see the Eco-Socio Indicators</button>
+
+  <div>
+    <h4 style="color : rgb(105, 49, 132)">Presets</h4>
+    <p>You can select one of the presets and click Add to Bucket to add it for analysis.<span class="text-danger">If you add a preset to your bucket any existing country added will be removed.</span></p>
+    <div class="form-group">
+      <!-- <label for="sel1">Select list:</label> -->
+      <select class="form-control" id="sel1">
+          <option>BRICS (Brazil, Russia, India, China, South Africa)</option>
+          <option>Highly Developed (USA, Canada, Germany, Australia, Denmark)</option>
+          <option>Least Developed (Afghanistan, Rwanda, Niger, Yemen, Bangladesh)</option>
+      </select>
+      <button id='addCountriesToList' class="btn btn-info btn-block" style="margin-top: 2px;">Add to my Bucket</button>
+    </div>
+  </div>
+
+  <div style="margin-top: 1%"><h4 style="color : rgb(105, 49, 132)">Visualization Structure</h4>
+
+      <p><b>Scenes</b> : With this scene I have tried following Schneiderman's mantra. This scene is meant to provide <br />an overview of the data.
+        The data in this scene is for almost 200 countries. We try to contrast between the change in <br /> population living in rural areas
+        between 1980 to 2014. The premise here is that a greater percentage change indicates greater urbanization which is an Indicator of development.
+      </p>
+      <p><b>Annotations</b> : The annotations here are the tooltips on each country. The tooltip gives information regarding <br />the population in 1980 and 2014. It also
+        gives you the population of the country that can help you contrast the population migration vs the actual population.
+      </p>
+      <p><b>Parameters</b> : The parameters that you can select in this chart are the countries, you can select the countries you want <br />to analyse. Clicking a country adds it to your bucket to process for further analysis.
+        You can also click on the button to take a deep dive into your selection.
+      </p>
+      <p><b>Triggers</b> : The triggers are that if you select a country it gets added to your bucket. If you select the a <br />continent from the legend the corresponding countries also get highlishted.</p>
+    </ul>
+  </div>
 
 </div>
 

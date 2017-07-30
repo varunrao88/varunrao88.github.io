@@ -352,12 +352,45 @@ function proc_data(){
 
 };
 
+$("#addCountriesToList").click(function(){
+  var val = $("#sel1").find(":selected").text();
+  if(val == "BRICS (Brazil, Russia, India, China, South Africa)"){
+    selectedCountries = [];
+    selectedCountries.push("India");
+    selectedCountries.push("Brazil");
+    selectedCountries.push("Russia");
+    selectedCountries.push("China");
+    selectedCountries.push("South Africa");
+    generatelistonScreen();
+  }
+  else if (val == "Highly Developed (USA, Canada, Germany, Australia, Denmark)"){
+    selectedCountries = [];
+    selectedCountries.push("United States");
+    selectedCountries.push("Canada");
+    selectedCountries.push("Germany");
+    selectedCountries.push("Australia");
+    selectedCountries.push("Denmark");
+    generatelistonScreen();
+  }
+  else if (val == "Least Developed (Afghanistan, Rwanda, Niger, Yemen, Bangladesh)") {
+    selectedCountries = [];
+    selectedCountries.push("Afghanistan");
+    selectedCountries.push("Rwanda");
+    selectedCountries.push("Niger");
+    selectedCountries.push("Yemen");
+    selectedCountries.push("Bangladesh");
+    generatelistonScreen();
+  }
+
+
+});
+
 function generatelistonScreen(){
   // console.log(selectedCountries);
   $("#selected_countries").html("");
   var html_ele = "";
   for(var i = 0 ; i < selectedCountries.length ; i++){
-      html_ele = html_ele + "<button class='btn btn-info remove_click' style='margin-right:2px' country_name='" +selectedCountries[i] + "'>" + selectedCountries[i] + '&nbsp; <span class="glyphicon glyphicon-remove" style="color:red"></span></button>';
+      html_ele = html_ele + "<button class='btn btn-info remove_click' style='margin-right:2px; margin-top:2px' country_name='" +selectedCountries[i] + "'>" + selectedCountries[i] + '&nbsp; <span class="glyphicon glyphicon-remove" style="color:red"></span></button>';
   }
 
   if(selectedCountries.length > 0){
