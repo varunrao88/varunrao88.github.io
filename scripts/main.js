@@ -379,6 +379,8 @@ $('#selected_countries').on('click','.remove_click',function(){
 $('#ESIndicators').click(function () {
 
   // console.log('Fetching Data');
+  selectedCountries_ESData = {};
+
   d3.json('data/document.json',function(e,dES){
 
     if (e){
@@ -420,6 +422,8 @@ $('#ESIndicators').click(function () {
 });
 
 function show_SocioEcoData_LE(){
+
+  d3.selectAll("#Soc_LE_Line > *").remove();
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -492,6 +496,8 @@ function show_SocioEcoData_LE(){
 
   var tooltip2 = d3.select("#tooltip2");
 
+  line_graph.selectAll("circle").data(all_arrays).exit().remove();
+
   line_graph.selectAll("circle").data(all_arrays)
             .enter().append("circle")
             .attr("cx",function(d){ return x(d.date) })
@@ -551,6 +557,8 @@ function show_SocioEcoData_LE(){
 
 // Infant Mortality
 function show_SocioEcoData_IM(){
+
+  d3.selectAll("#Soc_IM_Line > *").remove();
 
   var tooltip = d3.select("#tooltip");
 
@@ -682,6 +690,8 @@ function show_SocioEcoData_IM(){
 
 // Sanitation Data
 function show_SocioEcoData_SAN(){
+
+  d3.selectAll("#Soc_SAN_Line > *").remove();
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
@@ -817,6 +827,7 @@ function show_SocioEcoData_GNI(){
   //     'slow');
   //
   // $(".fixed_horizontal").css('display','initial');
+  d3.selectAll("#ECO_GNI > *").remove();
 
   var margin = {top: 20, right: 20, bottom: 50, left: 70};
   var width =  0.6 * $(window).width() - margin.left - margin.right;
